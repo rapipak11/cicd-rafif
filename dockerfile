@@ -1,8 +1,8 @@
 # using this awesome prebuild image:
 FROM '123majumundur/php-7.1-nginx:cicd'
-MAINTAINER Rafif Fakhri Ramadhan <rafiffakhrir@gmail.com>
+MAINTAINER Rafif Fakhri <rafiffakhrir@gmail.com>
 
-# Install prestissimo for faster deps instalation
+# Install prestissimo for faster deps instalation 
 RUN composer global require hirak/prestissimo
 
 # Make directory for hosting the apps
@@ -16,9 +16,10 @@ RUN composer install --prefer-dist --no-scripts --no-dev --no-autoloader && rm -
 # Copy codebase
 COPY --chown=app:root . ./
 
-# Finish composer
-# RUN composer dump-autoload
 
+
+# Finish composer
+#RUN composer dump-autoload
 RUN composer dump-autoload --no-scripts --no-dev --optimize
 
 EXPOSE 8080
